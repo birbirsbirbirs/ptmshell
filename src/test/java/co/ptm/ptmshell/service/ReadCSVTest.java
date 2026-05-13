@@ -36,7 +36,7 @@ class ReadCSVTest {
     repos.forEach(
         repo -> {
           try {
-            String s = readCSV.bashCommand("/home/b/spring-repos", "git clone " + repo.getRepo());
+            String s = readCSV.bashCommand("/Users/surajgurung/spring-repos", "git clone " + repo.getRepo());
             IO.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -54,7 +54,7 @@ class ReadCSVTest {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/home/b/spring-repos" + "/" + repo.getDirectory(), "git pull --all");
+                    "/Users/surajgurung/spring-repos" + "/" + repo.getDirectory(), "git pull --all");
             IO.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);

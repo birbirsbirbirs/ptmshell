@@ -40,7 +40,7 @@ public class ReadCSV {
   public List<Repo> readCsv() throws IOException {
     String[] HEADERS = {"SN", "repo"};
     Reader in =
-        new FileReader("/home/b/java-projects/ptmshell/src/main/resources/repos_spring.csv");
+        new FileReader("/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_spring.csv");
     CSVFormat csvFormat =
         CSVFormat.DEFAULT.builder().setHeader(HEADERS).setSkipHeaderRecord(true).build();
     CSVParser records = csvFormat.parse(in);
