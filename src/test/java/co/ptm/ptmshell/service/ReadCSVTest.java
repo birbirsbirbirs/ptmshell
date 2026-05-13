@@ -26,17 +26,23 @@ class ReadCSVTest {
 
   @Test
   void readCsvTest() throws IOException {
-    List<Repo> repos = readCSV.readCsv();
+    List<Repo> repos =
+        readCSV.readCsv(
+            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_spring.csv");
     repos.forEach(IO::println);
   }
 
   @Test
   void cloneReposTest() throws IOException, InterruptedException {
-    List<Repo> repos = readCSV.readCsv();
+    List<Repo> repos =
+        readCSV.readCsv(
+            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_spring.csv");
     repos.forEach(
         repo -> {
           try {
-            String s = readCSV.bashCommand("/Users/surajgurung/spring-repos", "git clone " + repo.getRepo());
+            String s =
+                readCSV.bashCommand(
+                    "/Users/surajgurung/spring-repos", "git clone " + repo.getRepo());
             IO.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -48,13 +54,57 @@ class ReadCSVTest {
 
   @Test
   void pullAllTest() throws IOException {
-    List<Repo> repos = readCSV.readCsv();
+    List<Repo> repos =
+        readCSV.readCsv(
+            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_spring.csv");
     repos.forEach(
         repo -> {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/Users/surajgurung/spring-repos" + "/" + repo.getDirectory(), "git pull --all");
+                    "/Users/surajgurung/spring-repos" + "/" + repo.getDirectory(),
+                    "git pull --all");
+            IO.println(s);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
+
+  @Test
+  void cloneReposTestCloud() throws IOException, InterruptedException {
+    List<Repo> repos =
+        readCSV.readCsv(
+            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_cloud_spring.csv");
+    repos.forEach(
+        repo -> {
+          try {
+            String s =
+                readCSV.bashCommand(
+                    "/Users/surajgurung/spring-cloud-repos", "git clone " + repo.getRepo());
+            IO.println(s);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
+
+  @Test
+  void pullAllTestCloud() throws IOException {
+    List<Repo> repos =
+        readCSV.readCsv(
+            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_cloud_spring.csv");
+    repos.forEach(
+        repo -> {
+          try {
+            String s =
+                readCSV.bashCommand(
+                    "/Users/surajgurung/spring-cloud-repos" + "/" + repo.getDirectory(),
+                    "git pull --all");
             IO.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);

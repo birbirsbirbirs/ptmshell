@@ -37,10 +37,9 @@ public class ReadCSV {
     return "Exit Code: " + exitCode + "\n" + output;
   }
 
-  public List<Repo> readCsv() throws IOException {
+  public List<Repo> readCsv(String file) throws IOException {
     String[] HEADERS = {"SN", "repo"};
-    Reader in =
-        new FileReader("/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_spring.csv");
+    Reader in = new FileReader(file);
     CSVFormat csvFormat =
         CSVFormat.DEFAULT.builder().setHeader(HEADERS).setSkipHeaderRecord(true).build();
     CSVParser records = csvFormat.parse(in);
