@@ -113,4 +113,44 @@ class ReadCSVTest {
           }
         });
   }
+  @Test
+  void cloneReposAdditional() throws IOException, InterruptedException {
+    List<Repo> repos =
+        readCSV.readCsv(
+            "/home/b/java-projects/ptmshell/src/main/resources/additional_repos.csv");
+    repos.forEach(
+        repo -> {
+          try {
+            String s =
+                readCSV.bashCommand(
+                    "/home/b/additional-rempos", "git clone " + repo.getRepo());
+            IO.println(s);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
+
+  @Test
+  void pullAllAdditional() throws IOException {
+    List<Repo> repos =
+        readCSV.readCsv(
+            "/home/b/java-projects/ptmshell/src/main/resources/additional_repos.csv");
+    repos.forEach(
+        repo -> {
+          try {
+            String s =
+                readCSV.bashCommand(
+                    "/home/b/additional-rempos" + "/" + repo.getDirectory(),
+                    "git pull --all");
+            IO.println(s);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+          }
+        });
+  }
 }
