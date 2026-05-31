@@ -1,9 +1,9 @@
 ```shell
-gw test --tests ReadCSVTest.pullAllTest
+g test --tests ReadCSVTest.pullAllTest
 ```
 ```shell
-gw test --tests ReadCSVTest.pullAllTestCloud
+g test --tests ReadCSVTest.pullAllTestCloud
 ```
 ```shell
-gw test --tests ReadCSVTest.pullAllAdditional
+g test --tests ReadCSVTest.pullAllAdditional
 ```
