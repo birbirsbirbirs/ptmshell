@@ -76,3 +76,4 @@ SN,repo
 75,https://github.com/spring-projects/spring-data-dev-tools.git
 76,https://github.com/spring-projects/spring-lifecycle-smoke-tests.git
 77,https://github.com/spring-projects/spring-cloud.git
+78,https://github.com/spring-gradle-plugins/dependency-management-plugin.git
