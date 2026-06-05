@@ -123,7 +123,7 @@ class ReadCSVTest {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/home/b/additional-rempos", "git clone " + repo.getRepo());
+                    "/home/b/additonal-repos", "git clone " + repo.getRepo());
             IO.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -143,7 +143,7 @@ class ReadCSVTest {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/home/b/additional-rempos" + "/" + repo.getDirectory(),
+                    "/home/b/additonal-repos" + "/" + repo.getDirectory(),
                     "git pull --all");
             IO.println(s);
           } catch (IOException e) {
