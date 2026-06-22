@@ -4,4 +4,5 @@ SN,repo
 3,https://github.com/grafana/docker-otel-lgtm.git
 4,https://github.com/betaflight/betaflight.git
 5,https://github.com/betaflight/betaflight-configurator.git
-
+6,https://github.com/embabel/embabel-agent.git
+7,https://github.com/resilience4j/resilience4j.git
