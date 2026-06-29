@@ -1,29 +1,25 @@
 # ptmshell
 
-Spring Shell 4 CLI app (Spring Boot 4.0.7) that reads CSV files of git repo URLs and runs bash clone/pull commands.
+Spring Shell 4 CLI app (Spring Boot 4.1.0) that reads CSV files and runs bash clone/pull via `ProcessBuilder`.
 
-## Build & toolchain
+## Build
 
-- **Java 25** (toolchain), **Gradle 9.4.1** wrapper
-- Use `./gradlew` (alias `g` in README but not in repo — define your own if needed)
-- **Format**: `./gradlew spotlessApply` (Google Java Format via Spotless)
-- **Test**: `./gradlew test --tests FullClassName.methodName`
-  - Single test example: `./gradlew test --tests ReadCSVTest.pullAllTest`
-  - All tests: `./gradlew test`
-- No CI/CD in this repo
+- **Java 25** (Gradle toolchain), **Spring Boot 4.1.0**, **Spring Shell BOM 4.0.2**
+- `./gradlew spotlessApply` (Google Java Format) — removes unused imports, trims trailing whitespace, ensures trailing newline
+- **Format check runs on every build** — `spotlessJavaCheck` is wired into `check` lifecycle. Use `-x spotlessJavaCheck` to skip.
+- `./gradlew test --tests co.ptm.ptmshell.service.ReadCSVTest.pullAllTest`
 
 ## Structure
 
-Single-module Gradle project under `co.ptm.ptmshell`:
-- `PtmshellApplication.java` — Spring Boot entrypoint
-- `service/ReadCSV.java` — reads CSV (`@Service`) and runs bash commands via `ProcessBuilder`
-- `model/Repo.java` — Lombok `@Data` + `@Builder`; derives directory name from repo URL
-- `src/main/resources/*.csv` — three CSV files (spring repos, spring-cloud repos, additional repos)
+Single module under `co.ptm.ptmshell`:
+- `service/ReadCSV.java` — `@Service` with `bashCommand(dir, cmd)` and `readCsv(filePath)`
+- `model/Repo.java` — Lombok `@Data @Builder`; `getDirectory()` extracts the last path segment (before `.git`) from the URL
+- `src/main/resources/*.csv` — `SN,repo` header, parsed via Apache Commons CSV
 
-## Notable quirks
+## Quirks & gotchas
 
-- **Null safety**: `@NullMarked` on both packages via `package-info.java` (JSpecify)
-- **Tests** contain hard-coded absolute paths (`/home/b/...`, `/Users/surajgurung/...`) — will not work outside the author's machine without editing
-- **`IO.println()`** used in tests with no import — IntelliJ IDEA-specific; not a standard library class
-- **Lombok** enabled — `@Slf4j`, `@Data`, `@Builder`, `@AllArgsConstructor`, `@NoArgsConstructor`
-- **Apache Commons CSV** for parsing `SN,repo` format CSV files
+- **Both main packages are `@NullMarked`** (JSpecify) — nullable fields must be annotated `@Nullable`
+- **`IO.println()` in tests** — this is an IntelliJ IDEA internal class. Tests using it will **not compile from the CLI** via Gradle. They only work when run inside IntelliJ with its test runner.
+- **`ReadCSV.repoList` is a mutable instance field** — each `readCsv()` call appends to the same list (never cleared). Calling it twice leaks duplicates.
+- **Integration tests are `@Disabled`** and contain hard-coded absolute paths (`/home/b/...`, `/Users/...`). They require local git repos and network access.
+- **No CI/CD** — no GitHub Actions or other CI config.

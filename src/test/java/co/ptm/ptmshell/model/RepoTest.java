@@ -12,6 +12,6 @@ class RepoTest {
             .repo("https://github.com/spring-projects/spring-framework.git")
             .build();
     String directory = repo.getDirectory();
-    IO.println(directory);
+    System.out.println(directory);
   }
 }
