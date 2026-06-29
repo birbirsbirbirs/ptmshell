@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import org.jspecify.annotations.NonNull;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -37,7 +36,6 @@ class ReadCSVTest {
     repos.forEach(System.out::println);
   }
 
-  @Disabled("Integration test: requires local directories and git network")
   @Test
   void cloneReposTest() throws IOException, InterruptedException {
     List<Repo> repos = readCSV.readCsv(resourcePath("repos_spring.csv"));
@@ -54,7 +52,6 @@ class ReadCSVTest {
         });
   }
 
-  @Disabled("Integration test: requires local directories and git network")
   @Test
   void pullAllTest() throws IOException {
     List<Repo> repos = readCSV.readCsv(resourcePath("repos_spring.csv"));
@@ -73,7 +70,6 @@ class ReadCSVTest {
         });
   }
 
-  @Disabled("Integration test: requires local directories and git network")
   @Test
   void cloneReposTestCloud() throws IOException, InterruptedException {
     List<Repo> repos = readCSV.readCsv(resourcePath("repos_cloud_spring.csv"));
@@ -91,7 +87,6 @@ class ReadCSVTest {
         });
   }
 
-  @Disabled("Integration test: requires local directories and git network")
   @Test
   void pullAllTestCloud() throws IOException {
     List<Repo> repos = readCSV.readCsv(resourcePath("repos_cloud_spring.csv"));
@@ -110,7 +105,6 @@ class ReadCSVTest {
         });
   }
 
-  @Disabled("Integration test: requires local directories and git network")
   @Test
   void cloneReposAdditional() throws IOException, InterruptedException {
     List<Repo> repos = readCSV.readCsv(resourcePath("additional_repos.csv"));
@@ -128,7 +122,6 @@ class ReadCSVTest {
         });
   }
 
-  @Disabled("Integration test: requires local directories and git network")
   @Test
   void pullAllAdditional() throws IOException {
     List<Repo> repos = readCSV.readCsv(resourcePath("additional_repos.csv"));
