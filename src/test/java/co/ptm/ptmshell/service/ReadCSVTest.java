@@ -17,7 +17,7 @@ class ReadCSVTest {
   @Test
   void bashCommandTest() throws IOException, InterruptedException {
     String createDirectory =
-        readCSV.bashCommand("/Users/surajgurung/IdeaProjects/ptmshell", "mkdir test test2");
+        readCSV.bashCommand("/Users/surajgurung/java-projects/ptmshell", "mkdir test test2");
     //    String deleteDirectory = readCSV.bashCommand("/home/b/java-projects/ptmshell","rm -rf test
     // test2");
     IO.println(createDirectory);
@@ -28,7 +28,7 @@ class ReadCSVTest {
   void readCsvTest() throws IOException {
     List<Repo> repos =
         readCSV.readCsv(
-            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_spring.csv");
+            "/Users/surajgurung/java-projects/ptmshell/src/main/resources/repos_spring.csv");
     repos.forEach(IO::println);
   }
 
@@ -36,7 +36,7 @@ class ReadCSVTest {
   void cloneReposTest() throws IOException, InterruptedException {
     List<Repo> repos =
         readCSV.readCsv(
-            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_spring.csv");
+            "/Users/surajgurung/java-projects/ptmshell/src/main/resources/repos_spring.csv");
     repos.forEach(
         repo -> {
           try {
@@ -56,7 +56,7 @@ class ReadCSVTest {
   void pullAllTest() throws IOException {
     List<Repo> repos =
         readCSV.readCsv(
-            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_spring.csv");
+            "/Users/surajgurung/java-projects/ptmshell/src/main/resources/repos_spring.csv");
     repos.forEach(
         repo -> {
           try {
@@ -77,7 +77,7 @@ class ReadCSVTest {
   void cloneReposTestCloud() throws IOException, InterruptedException {
     List<Repo> repos =
         readCSV.readCsv(
-            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_cloud_spring.csv");
+            "/Users/surajgurung/java-projects/ptmshell/src/main/resources/repos_cloud_spring.csv");
     repos.forEach(
         repo -> {
           try {
@@ -97,7 +97,7 @@ class ReadCSVTest {
   void pullAllTestCloud() throws IOException {
     List<Repo> repos =
         readCSV.readCsv(
-            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/repos_cloud_spring.csv");
+            "/Users/surajgurung/java-projects/ptmshell/src/main/resources/repos_cloud_spring.csv");
     repos.forEach(
         repo -> {
           try {
@@ -118,7 +118,7 @@ class ReadCSVTest {
   void cloneReposAdditional() throws IOException, InterruptedException {
     List<Repo> repos =
         readCSV.readCsv(
-            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/additional_repos.csv");
+            "/Users/surajgurung/java-projects/ptmshell/src/main/resources/additional_repos.csv");
     repos.forEach(
         repo -> {
           try {
@@ -138,7 +138,7 @@ class ReadCSVTest {
   void pullAllAdditional() throws IOException {
     List<Repo> repos =
         readCSV.readCsv(
-            "/Users/surajgurung/IdeaProjects/ptmshell/src/main/resources/additional_repos.csv");
+            "/Users/surajgurung/java-projects/ptmshell/src/main/resources/additional_repos.csv");
     repos.forEach(
         repo -> {
           try {
