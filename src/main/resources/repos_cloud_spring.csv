@@ -34,3 +34,4 @@ SN,repo
 33,https://github.com/spring-cloud/spring-cloud-openfeign.git
 34,https://github.com/spring-cloud/spring-cloud-github-actions.git
 35,https://github.com/spring-cloud/spring-cloud-netflix.git
+36,https://github.com/spring-attic/spring-cloud-stream-binder-rabbit.git
