@@ -157,7 +157,7 @@ class ReadCSVTest {
   }
 
   @Test
-  void pullAllCarft() throws IOException {
+  void pullAllCraft() throws IOException {
     List<Repo> repos = readCSV.readCsv(resourcePath("craft.csv"));
     repos.forEach(
         repo -> {

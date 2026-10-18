@@ -8,7 +8,7 @@ g test --tests ReadCSVTest.pullAllTestCloud
 g test --tests ReadCSVTest.pullAllAdditional
 ```
 ```shell
-g test --tests ReadCSVTest.pullAllCarft
+g test --tests ReadCSVTest.pullAllCraft
 ```
 ```shell
 g test --tests ReadCSVTest.pullAllFloci
