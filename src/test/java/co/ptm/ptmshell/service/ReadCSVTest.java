@@ -24,7 +24,7 @@ class ReadCSVTest {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/Volumes/bp/spring-repos", "git clone " + repo.getRepo());
+                    "/Users/surajgurung/repo-clones/spring-repos", "git clone " + repo.getRepo());
             IO.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -44,7 +44,7 @@ class ReadCSVTest {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/Volumes/bp/spring-repos" + "/" + repo.getDirectory(),
+                    "/Users/surajgurung/repo-clones/spring-repos" + "/" + repo.getDirectory(),
                     "git pull --all");
             IO.println(s);
           } catch (IOException e) {
@@ -65,7 +65,7 @@ class ReadCSVTest {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/Volumes/bp/spring-cloud-repos", "git clone " + repo.getRepo());
+                    "/Users/surajgurung/repo-clones/spring-cloud-repos", "git clone " + repo.getRepo());
             IO.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -85,7 +85,7 @@ class ReadCSVTest {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/Volumes/bp/spring-cloud-repos" + "/" + repo.getDirectory(),
+                    "/Users/surajgurung/repo-clones/spring-cloud-repos" + "/" + repo.getDirectory(),
                     "git pull --all");
             IO.println(s);
           } catch (IOException e) {
@@ -106,7 +106,7 @@ class ReadCSVTest {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/Volumes/bp/additional-repos", "git clone " + repo.getRepo());
+                    "/Users/surajgurung/repo-clones/additional-repos", "git clone " + repo.getRepo());
             IO.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -126,7 +126,7 @@ class ReadCSVTest {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/Volumes/bp/additional-repos" + "/" + repo.getDirectory(),
+                    "/Users/surajgurung/repo-clones/additional-repos" + "/" + repo.getDirectory(),
                     "git pull --all");
             IO.println(s);
           } catch (IOException e) {
@@ -143,7 +143,7 @@ class ReadCSVTest {
         repo -> {
           try {
             String s =
-                readCSV.bashCommand("/Volumes/bp/craft-repos", "git clone " + repo.getRepo());
+                readCSV.bashCommand("/Users/surajgurung/repo-clones/craft-repos", "git clone " + repo.getRepo());
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -161,7 +161,7 @@ class ReadCSVTest {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/Volumes/bp/craft-repos" + "/" + repo.getDirectory(), "git pull --all");
+                    "/Users/surajgurung/repo-clones/craft-repos" + "/" + repo.getDirectory(), "git pull --all");
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -177,7 +177,7 @@ class ReadCSVTest {
         repo -> {
           try {
             String s =
-                readCSV.bashCommand("/Volumes/bp/floci-repos", "git clone " + repo.getRepo());
+                readCSV.bashCommand("/Users/surajgurung/repo-clones/floci-repos", "git clone " + repo.getRepo());
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -195,7 +195,7 @@ class ReadCSVTest {
           try {
             String s =
                 readCSV.bashCommand(
-                    "/Volumes/bp/floci-repos" + "/" + repo.getDirectory(), "git pull --all");
+                    "/Users/surajgurung/repo-clones/floci-repos" + "/" + repo.getDirectory(), "git pull --all");
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
