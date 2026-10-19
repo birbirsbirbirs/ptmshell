@@ -190,6 +190,10 @@ class ReadCSVTest {
         });
   }
 
+    /**
+     * 7,https://github.com/floci-io/floci-io.github.io.git
+     * is removed, because of the no directory exception
+     */
   @Test
   void pullAllFloci() throws IOException {
     List<Repo> repos = readCSV.readCsv(resourcePath("floci.csv"));
