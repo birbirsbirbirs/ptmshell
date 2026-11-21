@@ -38,8 +38,7 @@ class ReadCSVTest {
 
   @Test
   void executeCommandTest() throws IOException, InterruptedException {
-    String createDirectory =
-        readCSV.executeCommand(projectDirectory(), "mkdir test test2");
+    String createDirectory = readCSV.executeCommand(projectDirectory(), "mkdir test test2");
     System.out.println(createDirectory);
   }
 
@@ -162,6 +161,7 @@ class ReadCSVTest {
           }
         });
   }
+
   @Test
   void cloneReposCraft() throws IOException, InterruptedException {
     createCloneDirectory("craft-repos");
@@ -199,6 +199,7 @@ class ReadCSVTest {
           }
         });
   }
+
   @Test
   void cloneReposFloci() throws IOException, InterruptedException {
     createCloneDirectory("floci-repos");
@@ -218,10 +219,10 @@ class ReadCSVTest {
         });
   }
 
-    /**
-     * 7,https://github.com/floci-io/floci-io.github.io.git
-     * is removed, because of the no directory exception
-     */
+  /**
+   * 7,https://github.com/floci-io/floci-io.github.io.git is removed, because of the no directory
+   * exception
+   */
   @Test
   void pullAllFloci() throws IOException {
     List<Repo> repos = readCSV.readCsv(resourcePath("floci.csv"));

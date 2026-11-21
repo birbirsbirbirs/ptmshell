@@ -26,8 +26,7 @@ public class ReadCSV {
       processBuilder = new ProcessBuilder("sh", "-c", command);
     }
 
-    Process process =
-        processBuilder.directory(new File(dir)).redirectErrorStream(true).start();
+    Process process = processBuilder.directory(new File(dir)).redirectErrorStream(true).start();
     StringBuilder output = new StringBuilder();
 
     try (BufferedReader reader =
