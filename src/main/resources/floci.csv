@@ -5,7 +5,6 @@ SN,repo
 4,https://github.com/floci-io/floci-ui.git
 5,https://github.com/floci-io/floci-gcp.git
 6,https://github.com/floci-io/testcontainers-floci-dotnet.git
-7,https://github.com/floci-io/floci-io.github.io.git
 8,https://github.com/floci-io/testcontainers-floci-node.git
 9,https://github.com/floci-io/testcontainers-floci-python.git
 10,https://github.com/floci-io/testcontainers-floci-go.git
