@@ -2,6 +2,7 @@ package co.ptm.ptmshell.service;
 
 import co.ptm.ptmshell.model.Repo;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import org.jspecify.annotations.NonNull;
@@ -13,21 +14,33 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class ReadCSVTest {
 
+  private static String homeDirectory() {
+    return System.getProperty("user.home");
+  }
+
+  private static String projectDirectory() {
+    return System.getProperty("user.dir");
+  }
+
   private static String resourcePath(String fileName) {
-    // Use project-relative path so tests work on any machine.
-    return Path.of("src/main/resources", fileName).toString();
+    return Path.of(projectDirectory(), "src", "main", "resources", fileName).toString();
+  }
+
+  private static String cloneDirectory(String directoryName) {
+    return Path.of(homeDirectory(), "repo-clones", directoryName).toString();
+  }
+
+  private static void createCloneDirectory(String directoryName) throws IOException {
+    Files.createDirectories(Path.of(cloneDirectory(directoryName)));
   }
 
   @InjectMocks private @NonNull ReadCSV readCSV;
 
   @Test
-  void bashCommandTest() throws IOException, InterruptedException {
+  void executeCommandTest() throws IOException, InterruptedException {
     String createDirectory =
-        readCSV.bashCommand("/home/b/java-projects/ptmshell", "mkdir test test2");
-    //    String deleteDirectory = readCSV.bashCommand("/home/b/java-projects/ptmshell","rm -rf test
-    // test2");
+        readCSV.executeCommand(projectDirectory(), "mkdir test test2");
     System.out.println(createDirectory);
-    //    System.out.println(deleteDirectory);
   }
 
   @Test
@@ -38,11 +51,14 @@ class ReadCSVTest {
 
   @Test
   void cloneReposTest() throws IOException, InterruptedException {
+    createCloneDirectory("spring-repos");
     List<Repo> repos = readCSV.readCsv(resourcePath("repos_spring.csv"));
     repos.forEach(
         repo -> {
           try {
-            String s = readCSV.bashCommand("/home/b/spring-repos", "git clone " + repo.getRepo());
+            String s =
+                readCSV.executeCommand(
+                    cloneDirectory("spring-repos"), "git clone " + repo.getRepo());
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -59,8 +75,9 @@ class ReadCSVTest {
         repo -> {
           try {
             String s =
-                readCSV.bashCommand(
-                    "/home/b/spring-repos" + "/" + repo.getDirectory(), "git pull --all");
+                readCSV.executeCommand(
+                    Path.of(cloneDirectory("spring-repos"), repo.getDirectory()).toString(),
+                    "git pull --all");
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -72,12 +89,14 @@ class ReadCSVTest {
 
   @Test
   void cloneReposTestCloud() throws IOException, InterruptedException {
+    createCloneDirectory("spring-cloud-repos");
     List<Repo> repos = readCSV.readCsv(resourcePath("repos_cloud_spring.csv"));
     repos.forEach(
         repo -> {
           try {
             String s =
-                readCSV.bashCommand("/home/b/spring-cloud-repos", "git clone " + repo.getRepo());
+                readCSV.executeCommand(
+                    cloneDirectory("spring-cloud-repos"), "git clone " + repo.getRepo());
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -94,8 +113,9 @@ class ReadCSVTest {
         repo -> {
           try {
             String s =
-                readCSV.bashCommand(
-                    "/home/b/spring-cloud-repos" + "/" + repo.getDirectory(), "git pull --all");
+                readCSV.executeCommand(
+                    Path.of(cloneDirectory("spring-cloud-repos"), repo.getDirectory()).toString(),
+                    "git pull --all");
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -107,12 +127,14 @@ class ReadCSVTest {
 
   @Test
   void cloneReposAdditional() throws IOException, InterruptedException {
+    createCloneDirectory("additional-repos");
     List<Repo> repos = readCSV.readCsv(resourcePath("additional_repos.csv"));
     repos.forEach(
         repo -> {
           try {
             String s =
-                readCSV.bashCommand("/home/b/additional-repos", "git clone " + repo.getRepo());
+                readCSV.executeCommand(
+                    cloneDirectory("additional-repos"), "git clone " + repo.getRepo());
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -129,8 +151,9 @@ class ReadCSVTest {
         repo -> {
           try {
             String s =
-                readCSV.bashCommand(
-                    "/home/b/additional-repos" + "/" + repo.getDirectory(), "git pull --all");
+                readCSV.executeCommand(
+                    Path.of(cloneDirectory("additional-repos"), repo.getDirectory()).toString(),
+                    "git pull --all");
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -141,12 +164,14 @@ class ReadCSVTest {
   }
   @Test
   void cloneReposCraft() throws IOException, InterruptedException {
+    createCloneDirectory("craft-repos");
     List<Repo> repos = readCSV.readCsv(resourcePath("craft.csv"));
     repos.forEach(
         repo -> {
           try {
             String s =
-                readCSV.bashCommand("/home/b/craft-repos", "git clone " + repo.getRepo());
+                readCSV.executeCommand(
+                    cloneDirectory("craft-repos"), "git clone " + repo.getRepo());
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -163,8 +188,9 @@ class ReadCSVTest {
         repo -> {
           try {
             String s =
-                readCSV.bashCommand(
-                    "/home/b/craft-repos" + "/" + repo.getDirectory(), "git pull --all");
+                readCSV.executeCommand(
+                    Path.of(cloneDirectory("craft-repos"), repo.getDirectory()).toString(),
+                    "git pull --all");
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -175,12 +201,14 @@ class ReadCSVTest {
   }
   @Test
   void cloneReposFloci() throws IOException, InterruptedException {
+    createCloneDirectory("floci-repos");
     List<Repo> repos = readCSV.readCsv(resourcePath("floci.csv"));
     repos.forEach(
         repo -> {
           try {
             String s =
-                readCSV.bashCommand("/home/b/floci-repos", "git clone " + repo.getRepo());
+                readCSV.executeCommand(
+                    cloneDirectory("floci-repos"), "git clone " + repo.getRepo());
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -201,8 +229,9 @@ class ReadCSVTest {
         repo -> {
           try {
             String s =
-                readCSV.bashCommand(
-                    "/home/b/floci-repos" + "/" + repo.getDirectory(), "git pull --all");
+                readCSV.executeCommand(
+                    Path.of(cloneDirectory("floci-repos"), repo.getDirectory()).toString(),
+                    "git pull --all");
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);

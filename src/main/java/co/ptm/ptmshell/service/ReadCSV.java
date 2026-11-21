@@ -15,12 +15,19 @@ import org.springframework.stereotype.Service;
 public class ReadCSV {
   List<Repo> repoList = new ArrayList<>();
 
-  public String bashCommand(String dir, String command) throws IOException, InterruptedException {
+  public String executeCommand(String dir, String command)
+      throws IOException, InterruptedException {
+    ProcessBuilder processBuilder;
+    String osName = System.getProperty("os.name").toLowerCase();
+
+    if (osName.startsWith("windows")) {
+      processBuilder = new ProcessBuilder("cmd.exe", "/d", "/c", command);
+    } else {
+      processBuilder = new ProcessBuilder("sh", "-c", command);
+    }
+
     Process process =
-        new ProcessBuilder("bash", "-c", command)
-            .directory(new File(dir))
-            .redirectErrorStream(true)
-            .start();
+        processBuilder.directory(new File(dir)).redirectErrorStream(true).start();
     StringBuilder output = new StringBuilder();
 
     try (BufferedReader reader =

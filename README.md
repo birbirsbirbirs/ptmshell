@@ -1,15 +1,15 @@
 ```shell
-g test --tests ReadCSVTest.pullAllTest
+./gradlew test --tests ReadCSVTest.pullAllTest
 ```
 ```shell
-g test --tests ReadCSVTest.pullAllTestCloud
+./gradlew test --tests ReadCSVTest.pullAllTestCloud
 ```
 ```shell
-g test --tests ReadCSVTest.pullAllAdditional
+./gradlew test --tests ReadCSVTest.pullAllAdditional
 ```
 ```shell
-g test --tests ReadCSVTest.pullAllCraft
+./gradlew test --tests ReadCSVTest.pullAllCraft
 ```
 ```shell
-g test --tests ReadCSVTest.pullAllFloci
+./gradlew test --tests ReadCSVTest.pullAllFloci
 ```

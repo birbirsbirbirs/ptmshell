@@ -12,7 +12,7 @@ Spring Shell 4 CLI app (Spring Boot 4.1.0) that reads CSV files and runs bash cl
 ## Structure
 
 Single module under `co.ptm.ptmshell`:
-- `service/ReadCSV.java` — `@Service` with `bashCommand(dir, cmd)` and `readCsv(filePath)`
+- `service/ReadCSV.java` — `@Service` with `executeCommand(dir, cmd)` and `readCsv(filePath)`
 - `model/Repo.java` — Lombok `@Data @Builder`; `getDirectory()` extracts the last path segment (before `.git`) from the URL
 - `src/main/resources/*.csv` — `SN,repo` header, parsed via Apache Commons CSV
 
