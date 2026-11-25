@@ -139,14 +139,14 @@ class ReadCSVTest {
           }
         });
   }
+
   @Test
   void cloneReposCraft() throws IOException, InterruptedException {
     List<Repo> repos = readCSV.readCsv(resourcePath("craft.csv"));
     repos.forEach(
         repo -> {
           try {
-            String s =
-                readCSV.bashCommand("/home/b/craft-repos", "git clone " + repo.getRepo());
+            String s = readCSV.bashCommand("/home/b/craft-repos", "git clone " + repo.getRepo());
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -173,14 +173,14 @@ class ReadCSVTest {
           }
         });
   }
+
   @Test
   void cloneReposFloci() throws IOException, InterruptedException {
     List<Repo> repos = readCSV.readCsv(resourcePath("floci.csv"));
     repos.forEach(
         repo -> {
           try {
-            String s =
-                readCSV.bashCommand("/home/b/floci-repos", "git clone " + repo.getRepo());
+            String s = readCSV.bashCommand("/home/b/floci-repos", "git clone " + repo.getRepo());
             System.out.println(s);
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -190,10 +190,10 @@ class ReadCSVTest {
         });
   }
 
-    /**
-     * 7,https://github.com/floci-io/floci-io.github.io.git
-     * is removed, because of the no directory exception
-     */
+  /**
+   * 7,https://github.com/floci-io/floci-io.github.io.git is removed, because of the no directory
+   * exception
+   */
   @Test
   void pullAllFloci() throws IOException {
     List<Repo> repos = readCSV.readCsv(resourcePath("floci.csv"));
